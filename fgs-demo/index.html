@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>라이더 로그 — FOREGROUND_SERVICE_LOCATION 사용 시연</title>
+<meta name="robots" content="noindex">
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+         max-width: 760px; margin: 0 auto; padding: 28px 18px 72px; line-height: 1.65;
+         color: #1a1a1a; background: #fff; }
+  @media (prefers-color-scheme: dark) { body { color: #e6e6e6; background: #101314; } }
+  h1 { font-size: 1.35rem; border-bottom: 3px solid #2AC1BC; padding-bottom: 10px; margin-bottom: 4px; }
+  .sub { color: #888; font-size: .92rem; margin-top: 0; }
+  h2 { font-size: 1.02rem; margin: 30px 0 8px; color: #17827e; }
+  @media (prefers-color-scheme: dark) { h2 { color: #2AC1BC; } .sub, .note { color: #9aa0a0; } }
+  video { width: 100%; max-width: 380px; display: block; margin: 20px auto;
+          border-radius: 12px; border: 1px solid rgba(127,127,127,.35); background: #000; }
+  table { border-collapse: collapse; width: 100%; font-size: .93rem; margin-top: 6px; }
+  th, td { border: 1px solid rgba(127,127,127,.35); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: rgba(42,193,188,.12); white-space: nowrap; }
+  code { background: rgba(42,193,188,.15); padding: 1px 6px; border-radius: 4px; word-break: break-all; }
+  .notice { border-left: 4px solid #e0a800; padding: 10px 0 10px 14px; margin: 22px 0; }
+  ul { padding-left: 20px; } li { margin: 6px 0; }
+  footer { margin-top: 40px; font-size: .86rem; color: #888; }
+  .en { color: #777; font-size: .88rem; }
+  @media (prefers-color-scheme: dark) { .en { color: #8b9090; } }
+</style>
+</head>
+<body>
+
+<h1>라이더 로그 — 포그라운드 서비스 위치 권한 사용 시연</h1>
+<p class="sub">
+  패키지 <code>kr.riderlog.app</code> · 권한 <code>android.permission.FOREGROUND_SERVICE_LOCATION</code><br>
+  <span class="en">Demonstration of FOREGROUND_SERVICE_LOCATION usage for Google Play review.</span>
+</p>
+
+<video src="rider-log-fgs-location.mp4" controls playsinline preload="metadata"></video>
+
+<h2>이 권한을 쓰는 이유</h2>
+<p>
+  배달 라이더가 <strong>운행 중 이동한 거리와 시간을 자동으로 기록</strong>하기 위해서입니다.
+  라이더는 운행 중 휴대폰을 거치대에 두고 다른 앱(배차 앱, 내비게이션)을 쓰므로,
+  앱이 화면 앞에 없는 동안에도 위치를 받아야 주행거리가 끊기지 않습니다.
+  이 거리는 종합소득세 신고 시 <strong>차량 관련 필요경비의 근거</strong>가 됩니다.
+</p>
+
+<h2>영상에서 확인하실 수 있는 것</h2>
+<table>
+  <tr><th>1</th><td><strong>사용자가 직접 시작합니다.</strong> 홈 화면의 「운행 시작」 버튼을 눌러야만 서비스가 뜹니다. 앱 실행만으로는 위치를 받지 않습니다.</td></tr>
+  <tr><th>2</th><td><strong>상시 알림으로 고지합니다.</strong> 「운행 기록 중 · 경로는 이 기기에만 저장됩니다」 알림이 서비스가 도는 내내 유지됩니다.</td></tr>
+  <tr><th>3</th><td><strong>앱을 벗어나도 알림이 유지됩니다.</strong> 홈으로 나간 뒤에도 알림이 그대로 있어, 사용자가 기록 중임을 항상 알 수 있습니다.</td></tr>
+  <tr><th>4</th><td><strong>사용자가 언제든 끝냅니다.</strong> 「운행 종료」를 누르면 서비스가 멈추고 알림이 즉시 사라집니다.</td></tr>
+</table>
+
+<div class="notice">
+  <strong>영상은 Android 에뮬레이터에서 촬영했습니다.</strong><br>
+  에뮬레이터에는 실제 GPS 이동이 없어 화면의 주행거리가 <code>0</code>으로 표시되고
+  「위치를 잡는 중…」이 유지됩니다. <strong>권한 사용 방식 — 사용자가 직접 시작하고,
+  상시 알림으로 고지하며, 사용자가 끄면 즉시 멈춘다 — 은 영상 그대로입니다.</strong>
+  <p class="en" style="margin:8px 0 0">
+    Recorded on an Android emulator, which has no real GPS movement, so the distance
+    reads 0. The permission behaviour shown — user-initiated start, persistent
+    foreground notification, immediate stop on user action — is unmodified.
+  </p>
+</div>
+
+<h2>선언하지 않은 것</h2>
+<ul>
+  <li><strong><code>ACCESS_BACKGROUND_LOCATION</code> 을 선언하지 않습니다.</strong> 위치는 포그라운드 서비스가 도는 동안에만 받습니다.</li>
+  <li><strong>위치를 서버로 보내지 않습니다.</strong> 이 앱에는 서버가 없고 회원가입도 없습니다. 경로는 기기 내부 데이터베이스에만 저장됩니다.</li>
+  <li><strong>위치를 제3자에게 공유하지 않습니다.</strong> 광고 SDK 에 전달되지 않으며, 지도 표시에도 기기의 현재 위치를 넘기지 않습니다.</li>
+  <li>권한을 거부해도 앱의 나머지 기능은 정상 동작하며, 주행거리는 직접 입력할 수 있습니다.</li>
+</ul>
+
+<footer>
+  개발: 한다라 · 문의 <a href="mailto:mg9366@naver.com">mg9366@naver.com</a><br>
+  <a href="../">개인정보처리방침</a>
+</footer>
+
+</body>
+</html>

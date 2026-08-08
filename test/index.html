@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>라이더 로그 — 비공개 테스트 참여</title>
+<meta name="robots" content="noindex">
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+         max-width: 640px; margin: 0 auto; padding: 28px 18px 72px; line-height: 1.65;
+         color: #1a1a1a; background: #fff; }
+  @media (prefers-color-scheme: dark) { body { color: #e6e6e6; background: #101314; } }
+  h1 { font-size: 1.45rem; border-bottom: 3px solid #2AC1BC; padding-bottom: 10px; margin-bottom: 6px; }
+  .sub { color: #888; font-size: .92rem; margin-top: 0; }
+  ol.steps { list-style: none; padding: 0; margin: 28px 0 0; counter-reset: s; }
+  ol.steps > li { counter-increment: s; position: relative; padding: 0 0 26px 46px; }
+  ol.steps > li::before {
+    content: counter(s); position: absolute; left: 0; top: 0;
+    width: 30px; height: 30px; border-radius: 50%; background: #2AC1BC; color: #06231f;
+    font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  ol.steps > li::after {
+    content: ""; position: absolute; left: 14px; top: 34px; bottom: 6px; width: 2px;
+    background: rgba(42,193,188,.30); }
+  ol.steps > li:last-child::after { display: none; }
+  h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  p.note { margin: 4px 0 12px; color: #666; font-size: .92rem; }
+  @media (prefers-color-scheme: dark) { p.note, .sub { color: #9aa0a0; } }
+  a.btn { display: inline-block; background: #2AC1BC; color: #06231f !important; font-weight: 700;
+          text-decoration: none; padding: 11px 20px; border-radius: 9px; }
+  a.btn:hover { filter: brightness(1.08); }
+  .box { border: 1px solid rgba(42,193,188,.45); border-radius: 10px; padding: 14px 16px; margin: 26px 0 0; }
+  .box h3 { margin: 0 0 6px; font-size: .97rem; }
+  .box p { margin: 0; font-size: .92rem; }
+  code { background: rgba(42,193,188,.15); padding: 1px 6px; border-radius: 4px; word-break: break-all; }
+  footer { margin-top: 40px; font-size: .86rem; color: #888; }
+</style>
+</head>
+<body>
+
+<h1>라이더 로그 — 비공개 테스트 참여</h1>
+<p class="sub">배달 수입·지출 장부 앱입니다. 출시 전 테스트에 참여해 주셔서 감사합니다.</p>
+
+<ol class="steps">
+
+  <li>
+    <h2>테스터 그룹에 참여합니다</h2>
+    <p class="note">
+      아래 버튼을 눌러 그룹에 가입하세요. <strong>Google 계정으로 로그인된 상태여야 합니다.</strong>
+      가입한 계정과 다음 단계에서 쓰는 계정이 <strong>같아야</strong> 합니다.
+    </p>
+    <a class="btn" href="https://groups.google.com/g/riderlog-testers">그룹 참여하기</a>
+  </li>
+
+  <li>
+    <h2>테스터로 등록합니다</h2>
+    <p class="note">
+      아래 버튼을 누르고 <strong>「테스터가 되기」</strong>를 선택하세요.
+      이 단계를 마쳐야 앱이 보입니다.
+    </p>
+    <a class="btn" href="https://play.google.com/apps/testing/kr.riderlog.app">테스터 등록하기</a>
+  </li>
+
+  <li>
+    <h2>앱을 설치합니다</h2>
+    <p class="note">
+      2단계 화면에 나오는 <strong>「Google Play에서 다운로드」</strong> 링크로 설치하세요.
+      바로 안 보이면 몇 분 뒤 다시 열어보시면 됩니다.
+    </p>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=kr.riderlog.app">Play 스토어에서 열기</a>
+  </li>
+
+</ol>
+
+<div class="box">
+  <h3>설치가 안 되나요?</h3>
+  <p>
+    거의 항상 <strong>계정이 다른 경우</strong>입니다. 1단계에서 가입한 Google 계정과
+    Play 스토어에 로그인된 계정이 같은지 확인해 주세요.
+    반영에 최대 몇 분 걸릴 수 있습니다.
+  </p>
+</div>
+
+<div class="box">
+  <h3>테스트 중 알아두실 것</h3>
+  <p>
+    기록은 전부 휴대폰 안에만 저장되며 서버로 전송되지 않습니다.
+    운행 기록에 위치 권한을 쓰지만 <strong>경로는 기기를 벗어나지 않습니다</strong>.
+    자세한 내용은 <a href="../">개인정보처리방침</a>을 참고하세요.
+  </p>
+</div>
+
+<footer>
+  의견·버그 제보: <a href="mailto:mg9366@naver.com">mg9366@naver.com</a><br>
+  개발: 한다라
+</footer>
+
+</body>
+</html>
